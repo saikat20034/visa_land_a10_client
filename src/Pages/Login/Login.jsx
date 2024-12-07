@@ -1,6 +1,7 @@
-import { useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
+import AOS from 'aos'; // Import AOS
+import 'aos/dist/aos.css'; // Import AOS styles
 import { FaGoogle } from 'react-icons/fa';
-import { FaGithub } from 'react-icons/fa';
 import { Typography, Input, Button } from '@material-tailwind/react';
 import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/solid';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -10,11 +11,17 @@ import useAuth from '../../hooks/useAuth';
 export function Login() {
   const [error, setError] = useState('');
   const [passwordShown, setPasswordShown] = useState(false);
-  const togglePasswordVisiblity = () => setPasswordShown(cur => !cur);
-  const { googleLogin, loginUser, setUser } =useAuth()
+  const togglePasswordVisibility = () => setPasswordShown(cur => !cur);
+  const { googleLogin, loginUser, setUser } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state || '/';
+
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   const handleGoogleLogin = () => {
     googleLogin()
       .then(result => {
@@ -30,6 +37,7 @@ export function Login() {
     setPasswordShown(false);
     const email = e.target.email.value;
     const password = e.target.password.value;
+
     loginUser(email, password)
       .then(result => {
         setUser(result.user);
@@ -41,28 +49,34 @@ export function Login() {
         toast.error('Wrong Email or Password');
       });
   };
+
   return (
-    <div className=" font-fontPrimary">
-      <section className="grid text-center  items-center p-8">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 font-fontPrimary">
+      <div
+        className="w-full max-w-md px-6 py-8 bg-white rounded-lg shadow-lg"
+        data-aos="fade-up"
+      >
         <Typography
           variant="h3"
           color="black"
-          className="mb-2  font-fontPrimary"
+          className="text-center mb-4 font-extrabold"
+          data-aos="fade-down"
         >
           Sign In
         </Typography>
-        <Typography className="mb-6 text-black font-normal text-[18px] font-fontPrimary">
-          Enter your email and password to sign in
-        </Typography>
-        <form
-          onSubmit={handleLoginUser}
-          className="mx-auto max-w-[24rem] text-left"
+        <Typography
+          className="text-center text-gray-700 text-sm mb-8"
+          data-aos="fade-down"
+          data-aos-delay="100"
         >
-          <div className="mb-6">
+          Enter your email and password to sign in.
+        </Typography>
+        <form onSubmit={handleLoginUser} className="space-y-6">
+          <div data-aos="fade-right" data-aos-delay="200">
             <label htmlFor="email">
               <Typography
                 variant="small"
-                className="mb-2 block font-medium text-black  font-fontPrimary"
+                className="block text-gray-700 font-medium mb-2"
               >
                 Your Email
               </Typography>
@@ -74,14 +88,14 @@ export function Login() {
               type="email"
               name="email"
               label="Email"
-              className="w-full placeholder:opacity-100 focus:border-t-primary border-t-blue-gray-200  font-fontPrimary"
+              className="w-full"
             />
           </div>
-          <div className="mb-3">
+          <div data-aos="fade-left" data-aos-delay="300">
             <label htmlFor="password">
               <Typography
                 variant="small"
-                className="mb-2 block font-medium text-black  font-fontPrimary"
+                className="block text-gray-700 font-medium mb-2"
               >
                 Password
               </Typography>
@@ -90,55 +104,73 @@ export function Login() {
               size="lg"
               label="Password"
               name="password"
-              className="w-full placeholder:opacity-100 focus:border-t-primary border-t-blue-gray-200"
+              className="w-full"
               type={passwordShown ? 'text' : 'password'}
               icon={
-                <i onClick={togglePasswordVisiblity}>
+                <i onClick={togglePasswordVisibility}>
                   {passwordShown ? (
-                    <EyeIcon className="h-5 w-5" />
+                    <EyeIcon className="h-5 w-5 cursor-pointer" />
                   ) : (
-                    <EyeSlashIcon className="h-5 w-5" />
+                    <EyeSlashIcon className="h-5 w-5 cursor-pointer" />
                   )}
                 </i>
               }
             />
           </div>
-          <small className="text-red-700 -mb-3 animate__animated animate__shakeX">
-            {error}
-          </small>
+          {error && (
+            <Typography
+              variant="small"
+              color="red"
+              className="text-center mt-2"
+              data-aos="fade-in"
+            >
+              {error}
+            </Typography>
+          )}
           <Button
             type="submit"
-            color="gray"
+            color="blue"
             size="lg"
-            className="mt-4  font-fontPrimary"
             fullWidth
+            className="transition duration-200 ease-in-out hover:shadow-lg hover:bg-blue-800"
+            data-aos="fade-up"
+            data-aos-delay="400"
           >
-            sign in
+            Sign In
           </Button>
-          <div className="flex justify-between gap-4 mx-0 md:mx-6">
+          <div
+            className="flex items-center justify-center gap-4"
+            data-aos="fade-up"
+            data-aos-delay="500"
+          >
             <Button
               onClick={handleGoogleLogin}
               variant="outlined"
+              color="blue-gray"
               size="md"
-              className="mt-4 flex  items-center justify-center gap-2 text-black  font-fontPrimary"
-              fullWidth
+              className="flex items-center justify-center gap-2 w-full"
             >
-              <FaGoogle className="text-lg text-black" />
-              google
+              <FaGoogle className="text-lg" />
+              Sign in with Google
             </Button>
           </div>
           <Typography
             variant="small"
             color="gray"
-            className="mt-4 text-center font-normal font-fontPrimary text-black"
+            className="text-center mt-4"
+            data-aos="fade-in"
+            data-aos-delay="600"
           >
             Not registered?{' '}
-            <Link to="/register" className="font-medium text-black">
+            <Link
+              to="/register"
+              className="font-medium text-blue-600 hover:underline"
+            >
               Create account
             </Link>
           </Typography>
         </form>
-      </section>
+      </div>
     </div>
   );
 }
