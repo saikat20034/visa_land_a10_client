@@ -1,0 +1,115 @@
+[
+  {
+    "country_image": "https://example.com/images/country1.jpg",
+    "country_name": "Canada",
+    "visa_type": "Tourist Visa",
+    "processing_time": "15-20 business days",
+    "required_documents": [
+      "Valid passport",
+      "Visa application form",
+      "Recent passport-sized photograph",
+      "Proof of financial support",
+      "Travel itinerary",
+      "Medical examination report"
+    ],
+    "description": "The Canada Tourist Visa allows individuals to visit Canada for tourism or leisure purposes.",
+    "age_restriction": "No age restriction",
+    "fee": "$100",
+    "validity": "6 months",
+    "application_method": "Online or at the nearest consulate"
+  },
+  {
+    "country_image": "https://example.com/images/country2.jpg",
+    "country_name": "Australia",
+    "visa_type": "Student Visa",
+    "processing_time": "4-6 weeks",
+    "required_documents": [
+      "Valid passport",
+      "Visa application form",
+      "Recent passport-sized photograph",
+      "Proof of enrollment in an educational institution",
+      "Financial documents",
+      "Health insurance"
+    ],
+    "description": "The Student Visa is for individuals wishing to study in Australia at a recognized educational institution.",
+    "age_restriction": "Minimum age: 18 years",
+    "fee": "$620",
+    "validity": "Duration of the course",
+    "application_method": "Online or through an authorized agent"
+  },
+  {
+    "country_image": "https://example.com/images/country3.jpg",
+    "country_name": "United States",
+    "visa_type": "Work Visa",
+    "processing_time": "2-3 months",
+    "required_documents": [
+      "Valid passport",
+      "Completed DS-160 form",
+      "Employment offer letter",
+      "Proof of qualifications",
+      "Visa fee receipt"
+    ],
+    "description": "The Work Visa allows individuals to work in the United States for a specified employer and duration.",
+    "age_restriction": "Minimum age: 21 years",
+    "fee": "$190",
+    "validity": "1-3 years (renewable)",
+    "application_method": "Online and interview at the embassy"
+  },
+  {
+    "country_image": "https://example.com/images/country4.jpg",
+    "country_name": "United Kingdom",
+    "visa_type": "Business Visa",
+    "processing_time": "10-15 business days",
+    "required_documents": [
+      "Valid passport",
+      "Visa application form",
+      "Recent passport-sized photograph",
+      "Invitation letter from UK company",
+      "Proof of business activities",
+      "Travel itinerary"
+    ],
+    "description": "The UK Business Visa allows individuals to conduct business activities such as meetings and conferences.",
+    "age_restriction": "No age restriction",
+    "fee": "$135",
+    "validity": "6 months",
+    "application_method": "Online or at the embassy"
+  },
+  {
+    "country_image": "https://example.com/images/country5.jpg",
+    "country_name": "Germany",
+    "visa_type": "Schengen Visa",
+    "processing_time": "7-10 business days",
+    "required_documents": [
+      "Valid passport",
+      "Visa application form",
+      "Recent passport-sized photograph",
+      "Proof of financial means",
+      "Travel insurance",
+      "Flight and hotel bookings"
+    ],
+    "description": "The Schengen Visa allows individuals to travel to multiple European countries for tourism or business.",
+    "age_restriction": "No age restriction",
+    "fee": "$80",
+    "validity": "90 days",
+    "application_method": "Online or at the consulate"
+  },
+  {
+    "country_image": "https://example.com/images/country6.jpg",
+    "country_name": "Japan",
+    "visa_type": "Tourist Visa",
+    "processing_time": "5-7 business days",
+    "required_documents": [
+      "Valid passport",
+      "Visa application form",
+      "Recent passport-sized photograph",
+      "Travel itinerary",
+      "Proof of financial means",
+      "Letter of invitation (if applicable)"
+    ],
+    "description": "The Japan Tourist Visa allows individuals to explore Japan for leisure and tourism.",
+    "age_restriction": "No age restriction",
+    "fee": "$30",
+    "validity": "90 days",
+    "application_method": "Online or at the Japanese embassy"
+  }
+]
