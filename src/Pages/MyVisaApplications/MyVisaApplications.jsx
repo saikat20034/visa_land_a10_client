@@ -4,6 +4,8 @@ import useAuth from '../../hooks/useAuth';
 
 const MyVisaApplications = () => {
   const [visaApplications, setVisaApplications] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(''); // State for search input
+  const [filteredApplications, setFilteredApplications] = useState([]); // State for filtered applications
   const { user } = useAuth();
 
   useEffect(() => {
@@ -13,10 +15,23 @@ const MyVisaApplications = () => {
       );
       const data = await response.json();
       setVisaApplications(data);
+      setFilteredApplications(data); // Initially show all applications
     };
 
     fetchVisaApplications();
   }, [user?.email]);
+
+  useEffect(() => {
+    // Filter visa applications based on the search term
+    if (searchTerm === '') {
+      setFilteredApplications(visaApplications);
+    } else {
+      const filtered = visaApplications.filter(visa =>
+        visa.country_name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredApplications(filtered);
+    }
+  }, [searchTerm, visaApplications]);
 
   const handleCancelApplication = async id => {
     console.log(id);
@@ -51,11 +66,28 @@ const MyVisaApplications = () => {
     }
   };
 
+  const handleSearchChange = e => {
+    setSearchTerm(e.target.value); // Update the search term when the user types
+  };
+
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <h2 className="text-2xl font-bold mb-6">My Visa Applications</h2>
+
+      {/* Search Input */}
+      <div className="mb-4">
+        <input
+          type="text"
+          placeholder="Search by country name"
+          className="p-2 border rounded-lg w-full md:w-1/2"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </div>
+
+      {/* Visa Applications List */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {visaApplications?.map(visa => (
+        {filteredApplications?.map(visa => (
           <div key={visa._id} className="p-4 border rounded-lg shadow-md">
             <img
               src={visa.country_image}
