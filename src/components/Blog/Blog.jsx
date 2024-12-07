@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import AOS styles
 
 const BlogPage = () => {
   const blogs = [
@@ -31,6 +33,15 @@ const BlogPage = () => {
     },
   ];
 
+  // Initialize AOS when the component mounts
+  useEffect(() => {
+    AOS.init({
+      duration: 3000, // Increased duration for slower animation (1.5 seconds)
+      easing: 'ease-in-out', // Easing function
+      once: true, // Animation happens once per element
+    });
+  }, []);
+
   return (
     <div className="bg-gray-100 min-h-screen px-4 py-8 sm:px-8 lg:px-16">
       <header className="text-center mb-8">
@@ -45,6 +56,7 @@ const BlogPage = () => {
           <div
             key={blog.id}
             className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+            data-aos="fade-left" // Add AOS fade-left animation here
           >
             <img
               src={blog.image}
