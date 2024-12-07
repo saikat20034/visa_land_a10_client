@@ -24,7 +24,7 @@ const WhyChooseVisaLand = () => {
           data-aos="fade-up" // Add AOS animation here
         >
           <img
-            src="/images/fast-processing.svg"
+            src="https://img.freepik.com/premium-vector/fast-processing-flat-vector-icon_9206-414.jpg"
             alt="Fast Processing"
             className="w-20 h-20 mb-4 transform transition-transform duration-300 hover:scale-110"
           />
