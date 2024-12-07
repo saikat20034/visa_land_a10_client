@@ -40,7 +40,7 @@ const WhyChooseVisaLand = () => {
           data-aos="fade-up" // Add AOS animation here
         >
           <img
-            src="/images/secure-payment.svg"
+            src="https://www.keyivr.com/wp-content/uploads/2024/02/Payment-IVR-Pass-Off-Mobile-Step-5.png"
             alt="Secure Payment"
             className="w-20 h-20 mb-4 transform transition-transform duration-300 hover:scale-110"
           />
@@ -56,7 +56,7 @@ const WhyChooseVisaLand = () => {
           data-aos="fade-up" // Add AOS animation here
         >
           <img
-            src="/images/expert-support.svg"
+            src="https://fouladbast.com/wp-content/uploads/2023/11/diagram_customer_support.png"
             alt="Expert Support"
             className="w-20 h-20 mb-4 transform transition-transform duration-300 hover:scale-110"
           />
