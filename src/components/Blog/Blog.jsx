@@ -7,7 +7,8 @@ const BlogPage = () => {
       title: 'Simplifying Visa Applications',
       description:
         'Learn how VisaLand makes the visa process hassle-free and efficient.',
-      image: 'https://via.placeholder.com/400x200',
+      image:
+        'https://a.storyblok.com/f/199708/1600x770/e9bb3eeec4/visa_-_mobility_your_ally_in_simplifying_visa_processes_globally_02.jpg',
       date: 'December 7, 2024',
     },
     {
