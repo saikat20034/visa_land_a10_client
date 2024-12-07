@@ -56,7 +56,7 @@ const TopCountries = () => {
         {/* Country 3 */}
         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia.svg"
+            src="https://www.flagcolorcodes.com/filter?f=australia&e=fabric"
             alt="Australia"
             className="w-full h-32 object-cover"
           />
