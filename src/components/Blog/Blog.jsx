@@ -16,7 +16,8 @@ const BlogPage = () => {
       title: 'Top 10 Tips for Your Visa Interview',
       description:
         'Get prepared for your next visa interview with these essential tips.',
-      image: 'https://via.placeholder.com/400x200',
+      image:
+        'https://themigrationbureau.com/wp-content/uploads/2024/03/TMB-Blog-Minimum-salary-3-1110x630.png',
       date: 'November 28, 2024',
     },
     {
@@ -24,7 +25,8 @@ const BlogPage = () => {
       title: 'Understanding Visa Categories',
       description:
         'An in-depth look at different visa types and their requirements.',
-      image: 'https://via.placeholder.com/400x200',
+      image:
+        'https://visaprocedures.com/wp-content/uploads/2024/01/jpeg-optimizer_DALL%C2%B7E-2024-01-25-15.23.59-An-educational-poster-titled-Understanding-Visa-Types-with-various-colorful-icons-representing-different-types-of-visas-like-tourist-student-work.png',
       date: 'November 15, 2024',
     },
   ];
