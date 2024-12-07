@@ -33,7 +33,7 @@ const BlogPage = () => {
     },
   ];
 
-  // Initialize AOS when the component mounts
+
   useEffect(() => {
     AOS.init({
       duration: 3000, // Increased duration for slower animation (1.5 seconds)
