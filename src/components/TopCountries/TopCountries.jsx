@@ -27,7 +27,7 @@ const TopCountries = () => {
     {
       name: 'Australia',
       visaType: 'Work Visa',
-      img: 'https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg',
+      img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_%28converted%29.svg/800px-Flag_of_Australia_%28converted%29.svg.png',
       detailsLink: '/country-details/australia',
       description:
         'Opportunities for skilled professionals in a thriving economy.',
