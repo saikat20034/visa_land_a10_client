@@ -1,99 +1,87 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const TopCountries = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
+  const countries = [
+    {
+      name: 'United States',
+      visaType: 'Tourist Visa',
+      img: 'https://cdn.britannica.com/79/4479-050-6EF87027/flag-Stars-and-Stripes-May-1-1795.jpg',
+      detailsLink: '/country-details/united-states',
+      description:
+        'Explore vibrant cities, scenic landscapes, and rich culture.',
+    },
+    {
+      name: 'United Kingdom',
+      visaType: 'Student Visa',
+      img: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg',
+      detailsLink: '/country-details/united-kingdom',
+      description: 'Study in one of the world’s leading educational hubs.',
+    },
+    {
+      name: 'Australia',
+      visaType: 'Work Visa',
+      img: 'https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg',
+      detailsLink: '/country-details/australia',
+      description:
+        'Opportunities for skilled professionals in a thriving economy.',
+    },
+    {
+      name: 'Canada',
+      visaType: 'Resident Visa',
+      img: 'https://cdn.vectorstock.com/i/500p/57/98/flag-canada-vector-33145798.jpg',
+      detailsLink: '/country-details/canada',
+      description:
+        'Experience a welcoming culture and outstanding quality of life.',
+    },
+  ];
+
   return (
-    <div className="py-10 px-6 bg-gray-100">
-      <h3 className="text-2xl font-bold text-center text-blue-900 mb-6">
+    <div className="py-16 px-6 bg-gradient-to-r from-blue-50 to-indigo-100">
+      <h3
+        className="text-4xl font-bold text-center text-indigo-800 mb-10"
+        data-aos="fade-down"
+      >
         Top Countries for Visas
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* Country 1 */}
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-          <img
-            src="https://cdn.britannica.com/79/4479-050-6EF87027/flag-Stars-and-Stripes-May-1-1795.jpg"
-            alt="United States"
-            className="w-full h-32 object-cover"
-          />
-          <div className="p-4">
-            <h4 className="text-lg font-semibold text-gray-800">
-              United States
-            </h4>
-            <p className="text-sm text-gray-600">
-              <strong>Visa Type:</strong> Tourist Visa
-            </p>
-            <Link
-              className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-              to="/country-details/united-states"
-            >
-              Learn More
-            </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {countries.map((country, index) => (
+          <div
+            key={index}
+            className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:-translate-y-2"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <img
+              src={country.img}
+              alt={country.name}
+              className="w-full h-40 object-cover"
+            />
+            <div className="p-6">
+              <h4 className="text-xl font-bold text-gray-800">
+                {country.name}
+              </h4>
+              <p className="text-sm text-gray-600 mt-2">
+                <strong>Visa Type:</strong> {country.visaType}
+              </p>
+              <p className="text-sm text-gray-500 mt-4">
+                {country.description}
+              </p>
+              <Link
+                to={country.detailsLink}
+                className="block mt-6 w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-2 px-4 rounded hover:bg-indigo-700"
+              >
+                Learn More
+              </Link>
+            </div>
           </div>
-        </div>
-
-        {/* Country 2 */}
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg"
-            alt="United Kingdom"
-            className="w-full h-32 object-cover"
-          />
-          <div className="p-4">
-            <h4 className="text-lg font-semibold text-gray-800">
-              United Kingdom
-            </h4>
-            <p className="text-sm text-gray-600">
-              <strong>Visa Type:</strong> Student Visa
-            </p>
-            <Link
-              className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-              to="/country-details/united-kingdom"
-            >
-              Learn More
-            </Link>
-          </div>
-        </div>
-
-        {/* Country 3 */}
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-          <img
-            src="https://www.flagcolorcodes.com/filter?f=australia&e=fabric"
-            alt="Australia"
-            className="w-full h-32 object-cover"
-          />
-          <div className="p-4">
-            <h4 className="text-lg font-semibold text-gray-800">Australia</h4>
-            <p className="text-sm text-gray-600">
-              <strong>Visa Type:</strong> Work Visa
-            </p>
-            <Link
-              className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-              to="/country-details/australia"
-            >
-              Learn More
-            </Link>
-          </div>
-        </div>
-
-        {/* Country 4 */}
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-          <img
-            src="https://cdn.vectorstock.com/i/500p/57/98/flag-canada-vector-33145798.jpg"
-            alt="Canada"
-            className="w-full h-32 object-cover"
-          />
-          <div className="p-4">
-            <h4 className="text-lg font-semibold text-gray-800">Canada</h4>
-            <p className="text-sm text-gray-600">
-              <strong>Visa Type:</strong> Resident Visa
-            </p>
-            <Link
-              className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-              to="/country-details/canada"
-            >
-              Learn More
-            </Link>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
