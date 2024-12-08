@@ -49,8 +49,8 @@ const CountryDetails = () => {
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg overflow-hidden">
         <div className="relative w-full h-64">
           <img
-            src={country.flag}
-            alt={`${country.name} Flag`}
+            src={country?.flag}
+            alt={`${country?.name} Flag`}
             className="w-full h-full object-cover"
           />
         </div>

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -13,7 +12,6 @@ const TopCountries = () => {
       name: 'United States',
       visaType: 'Tourist Visa',
       img: 'https://cdn.britannica.com/79/4479-050-6EF87027/flag-Stars-and-Stripes-May-1-1795.jpg',
-      detailsLink: '/country-details/united-states',
       description:
         'Explore vibrant cities, scenic landscapes, and rich culture.',
     },
@@ -21,14 +19,12 @@ const TopCountries = () => {
       name: 'United Kingdom',
       visaType: 'Student Visa',
       img: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg',
-      detailsLink: '/country-details/united-kingdom',
       description: 'Study in one of the world’s leading educational hubs.',
     },
     {
       name: 'Australia',
       visaType: 'Work Visa',
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_%28converted%29.svg/800px-Flag_of_Australia_%28converted%29.svg.png',
-      detailsLink: '/country-details/australia',
       description:
         'Opportunities for skilled professionals in a thriving economy.',
     },
@@ -36,14 +32,13 @@ const TopCountries = () => {
       name: 'Canada',
       visaType: 'Resident Visa',
       img: 'https://cdn.vectorstock.com/i/500p/57/98/flag-canada-vector-33145798.jpg',
-      detailsLink: '/country-details/canada',
       description:
         'Experience a welcoming culture and outstanding quality of life.',
     },
   ];
 
   return (
-    <div className="py-16 px-6 bg-gradient-to-r from-blue-50 to-indigo-100">
+    <div className="py-16 px-6 rounded-lg my-10 bg-gradient-to-r from-blue-50 to-indigo-100">
       <h3
         className="text-4xl font-bold text-center text-indigo-800 mb-10"
         data-aos="fade-down"
@@ -73,12 +68,15 @@ const TopCountries = () => {
               <p className="text-sm text-gray-500 mt-4">
                 {country.description}
               </p>
-              <Link
-                to={country.detailsLink}
+              {/* Removed routing functionality from Learn More button */}
+              <button
                 className="block mt-6 w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-2 px-4 rounded hover:bg-indigo-700"
+                onClick={() =>
+                  console.log('Learn More clicked, but routing is disabled')
+                }
               >
                 Learn More
-              </Link>
+              </button>
             </div>
           </div>
         ))}

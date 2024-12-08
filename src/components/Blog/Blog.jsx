@@ -43,7 +43,7 @@ const BlogPage = () => {
   }, []);
 
   return (
-    <div className="bg-gray-100 min-h-screen px-4 py-8 sm:px-8 lg:px-16">
+    <div className="bg-gray-100 rounded-lg my-10 min-h-screen px-4 py-8 sm:px-8 lg:px-16">
       <header className="text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-800">VisaLand Blog</h1>
         <p className="text-gray-600 mt-2">

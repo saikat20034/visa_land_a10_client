@@ -13,7 +13,7 @@ const WhyChooseVisaLand = () => {
   }, []);
 
   return (
-    <div className="py-12 px-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600">
+    <div className="py-12 rounded-lg my-10 px-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600">
       <h3 className="text-3xl font-extrabold text-center text-white mb-8">
         Why Choose Visa Land?
       </h3>

@@ -55,15 +55,15 @@ const AllVisas = () => {
           <option value="Work Visa">Work visa</option>
           <option value="Residential Visa">Residential visa</option>
           <option value="Tourist Visa">Tourist visa</option>
+         
         </select>
       </div>
 
       {/* Visa Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-4">
-        {filteredVisas.map(
-          visa =>
+        {filteredVisas.map(visa => (
           <VisaCard key={visa._id} visa={visa} />
-        )}
+        ))}
       </div>
     </div>
   );

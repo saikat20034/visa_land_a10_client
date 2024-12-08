@@ -24,7 +24,7 @@ const LatestVisaSection = () => {
   }, []);
   if (!visas || visas.length <= 0) return <LoadingSpinner />;
   return (
-    <div className="py-10 px-6 bg-gray-100">
+    <div className="py-10 px-6 rounded-lg mt-10 bg-gray-100">
       <p className="text-2xl font-bold text-center text-blue-900 mb-6">
         <Slide triggerOnce>Latest Visas</Slide>
       </p>

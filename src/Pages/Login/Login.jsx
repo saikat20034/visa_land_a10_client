@@ -116,6 +116,21 @@ export function Login() {
                 </i>
               }
             />
+            <Typography
+              variant="small"
+              color="blue-gray"
+              className="text-right mt-2"
+              data-aos="fade-in"
+              data-aos-delay="300"
+            >
+              <Link
+                to="#"
+                onClick={e => e.preventDefault()} // Prevent functionality
+                className="text-blue-600 hover:underline"
+              >
+                Forget Password?
+              </Link>
+            </Typography>
           </div>
           {error && (
             <Typography

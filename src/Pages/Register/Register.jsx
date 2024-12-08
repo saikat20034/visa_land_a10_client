@@ -48,7 +48,7 @@ export function Register() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 font-fontPrimary">
+    <div className="flex items-center justify-center py-10 min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 font-fontPrimary">
       <div
         className="w-full max-w-md px-6 py-8 bg-white rounded-lg shadow-lg"
         data-aos="fade-up"

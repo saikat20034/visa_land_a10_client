@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Select from 'react-select';
 import Swal from 'sweetalert2';
+import { getNames } from 'country-list';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
 const AddVisa = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const [selectedCountry, setSelectedCountry] = useState(null);
+
+  // Fetch country names dynamically
+  const countries = getNames().map(country => ({
+    value: country,
+    label: country,
+  }));
 
   const handleAddVisa = e => {
     e.preventDefault();
     const form = e.target;
 
-    const country_name = form.country_name.value;
     const country_image = form.country_image.value;
     const visa_type = form.visa_type.value;
     const processing_time = form.processing_time.value;
@@ -24,8 +32,18 @@ const AddVisa = () => {
     const validity = form.validity.value;
     const application_method = form.application_method.value;
 
+    if (!selectedCountry) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Please select a country.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+      return;
+    }
+
     const newVisa = {
-      country_name,
+      country_name: selectedCountry.value,
       country_image,
       visa_type,
       processing_time,
@@ -52,7 +70,7 @@ const AddVisa = () => {
       .then(res => res.json())
       .then(data => {
         if (data.insertedId) {
-          navigate('/my-added-visas');
+          navigate('/all-visas');
           Swal.fire({
             title: 'Success!',
             text: 'Visa has been added successfully!',
@@ -60,6 +78,7 @@ const AddVisa = () => {
             confirmButtonText: 'OK',
           });
           form.reset();
+          setSelectedCountry(null);
         }
       })
       .catch(error => {
@@ -81,7 +100,7 @@ const AddVisa = () => {
         onSubmit={handleAddVisa}
         className="space-y-6 bg-white p-6 rounded-lg shadow-lg"
       >
-        {/* Country Name */}
+        {/* Country Name (Dropdown) */}
         <div className="mb-4">
           <label
             htmlFor="country_name"
@@ -89,12 +108,12 @@ const AddVisa = () => {
           >
             Country Name
           </label>
-          <input
-            type="text"
-            name="country_name"
-            placeholder="Enter country name"
-            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
+          <Select
+            options={countries}
+            value={selectedCountry}
+            onChange={setSelectedCountry}
+            placeholder="Select a country"
+            className="w-full"
           />
         </div>
 
@@ -131,8 +150,8 @@ const AddVisa = () => {
             <option value="Tourist Visa">Tourist Visa</option>
             <option value="Student Visa">Student Visa</option>
             <option value="Official Visa">Official Visa</option>
-            <option value="Official Visa">Residential Visa</option>
-            <option value="Official Visa">Work Visa</option>
+            <option value="Residential Visa">Residential Visa</option>
+            <option value="Work Visa">Work Visa</option>
           </select>
         </div>
 

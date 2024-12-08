@@ -4,7 +4,7 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import Swal from 'sweetalert2';
 
 const MyAddedVisas = () => {
-  const [visa, setVisa] = useState(null);
+  const [visas, setVisas] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedVisa, setSelectedVisa] = useState(null);
   const { user } = useAuth();
@@ -16,7 +16,7 @@ const MyAddedVisas = () => {
           `${import.meta.env.VITE_API_URL}/visa/${user?.email}`
         );
         const data = await response.json();
-        setVisa(data);
+        setVisas(data);
       } catch (error) {
         console.error('Error fetching visa details:', error);
       }
@@ -48,33 +48,45 @@ const MyAddedVisas = () => {
       application_method: form.application_method.value,
     };
 
-    const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/visa-update/${selectedVisa._id}`,
-      {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedVisa),
-      }
-    );
-    const data = await response.json();
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/visa-update/${selectedVisa._id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedVisa),
+        }
+      );
+      const data = await response.json();
 
-    if (data.modifiedCount > 0) {
-      Swal.fire({
-        title: 'Success!',
-        text: 'Visa updated successfully.',
-        icon: 'success',
-        confirmButtonText: 'OK',
-      });
-      handleCloseModal();
-    } else {
-      Swal.fire({
-        title: 'Error!',
-        text: 'Failed to update visa. Please try again.',
-        icon: 'error',
-        confirmButtonText: 'OK',
-      });
+      if (data.modifiedCount > 0) {
+        Swal.fire({
+          title: 'Success!',
+          text: 'Visa updated successfully.',
+          icon: 'success',
+          confirmButtonText: 'OK',
+        });
+
+        // Update the state without reloading the page
+        setVisas(prevVisas =>
+          prevVisas.map(visa =>
+            visa._id === selectedVisa._id ? { ...visa, ...updatedVisa } : visa
+          )
+        );
+
+        handleCloseModal();
+      } else {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Failed to update visa. Please try again.',
+          icon: 'error',
+          confirmButtonText: 'OK',
+        });
+      }
+    } catch (error) {
+      console.error('Error updating visa:', error);
     }
   };
 
@@ -91,37 +103,51 @@ const MyAddedVisas = () => {
 
     if (!confirmDelete.isConfirmed) return;
 
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/visa/${id}`, {
-      method: 'DELETE',
-    });
-    const data = await response.json();
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/visa/${id}`,
+        {
+          method: 'DELETE',
+        }
+      );
+      const data = await response.json();
 
-    if (data.deletedCount > 0) {
-      Swal.fire('Deleted!', 'Visa has been deleted.', 'success');
-    } else {
-      Swal.fire('Error!', 'Failed to delete the visa.', 'error');
+      if (data.deletedCount > 0) {
+        Swal.fire('Deleted!', 'Visa has been deleted.', 'success');
+
+        // Remove the deleted visa from the state
+        setVisas(prevVisas => prevVisas.filter(visa => visa._id !== id));
+      } else {
+        Swal.fire('Error!', 'Failed to delete the visa.', 'error');
+      }
+    } catch (error) {
+      console.error('Error deleting visa:', error);
     }
   };
 
-  if (!visa || visa.length <= 0) {
+  if (!visas) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <LoadingSpinner />
+      </div>
+    );
+  } else if (visas.length === 0) {
     return (
       <div className="flex justify-center items-center h-screen">
         <p>Please add some data</p>
       </div>
     );
-  } else if (visa.length === 0) {
-    return <LoadingSpinner />;
   }
 
   return (
-    <div className="p-6 max-w-6xl mx-auto bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 relative">
+    <div className="p-6 max-w-6xl my-10 rounded-lg mx-auto bg-gradient-to-br from-green-400 via-blue-500 to-purple-600 relative">
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="relative z-10">
         <h2 className="text-3xl font-bold text-center mb-8 text-white">
           My Added Visas
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {visa?.map(visa => (
+          {visas.map(visa => (
             <div
               key={visa._id}
               className="p-4 border rounded-lg shadow-xl transition-transform duration-500 transform hover:scale-105 bg-white"
@@ -129,11 +155,11 @@ const MyAddedVisas = () => {
             >
               <img
                 src={visa.country_image}
-                alt={visa.country}
+                alt={visa.country_name}
                 className="w-full h-40 object-cover rounded-md mb-4"
               />
               <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                {visa.country}
+                {visa.country_name}
               </h3>
               <p className="text-gray-600">Visa Type: {visa.visa_type}</p>
               <p className="text-gray-600">

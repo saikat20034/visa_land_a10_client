@@ -1,5 +1,7 @@
 * Project Name : VisaLand
-* Live URL :
+* Live URL : Vercel link(server) : visa-land-server.vercel.app
+             Firebase link : 
+
 * Features of my website :
                          - user can registered him/her with valid information or registered user can login  him/her with password,email,google .
                          - user can add visa

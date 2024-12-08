@@ -38,11 +38,19 @@ export const router = createBrowserRouter([
       },
       {
         path: '/add-visa',
-        element: <AddVisa />,
+        element: (
+          <PrivateRoute>
+            <AddVisa></AddVisa>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/my-added-visas',
-        element: <MyAddedVisas />,
+        element: (
+          <PrivateRoute>
+            <MyAddedVisas></MyAddedVisas>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/my-visa-applications',
