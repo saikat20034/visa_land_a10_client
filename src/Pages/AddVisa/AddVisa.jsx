@@ -73,7 +73,7 @@ const AddVisa = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-lg shadow-lg">
+    <div className="max-w-4xl mx-auto p-6 my-10 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-lg shadow-lg">
       <h2 className="text-3xl font-extrabold text-white text-center mb-8">
         Add a New Visa
       </h2>
@@ -131,6 +131,8 @@ const AddVisa = () => {
             <option value="Tourist Visa">Tourist Visa</option>
             <option value="Student Visa">Student Visa</option>
             <option value="Official Visa">Official Visa</option>
+            <option value="Official Visa">Residential Visa</option>
+            <option value="Official Visa">Work Visa</option>
           </select>
         </div>
 
@@ -209,7 +211,7 @@ const AddVisa = () => {
             htmlFor="age_restriction"
             className="block text-lg font-medium text-gray-800"
           >
-            Age Restriction (Minimum Age)
+            Age Restriction (Minimum Age - 18yr)
           </label>
           <input
             type="number"
@@ -226,7 +228,7 @@ const AddVisa = () => {
             htmlFor="fee"
             className="block text-lg font-medium text-gray-800"
           >
-            Visa Fee
+            Visa Fee($)
           </label>
           <input
             type="number"

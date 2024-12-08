@@ -10,7 +10,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">
+    <div className="min-h-screen my-10 pb-10 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">
       {/* Hero Section */}
       <section className="text-center py-16 px-4" data-aos="fade-down">
         <h1 className="text-4xl md:text-5xl font-extrabold">Contact Us</h1>
