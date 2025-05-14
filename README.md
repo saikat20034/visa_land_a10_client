@@ -49,7 +49,7 @@ Follow the steps below to set up and run the project on your local machine:
 Clone the repository using Git:
 
 bash
-git clone https://github.com/saikat20034/Hotel_hive_a11_client
+git clone https://github.com/saikat20034/visa_land_a10_client
 
 OR download the ZIP file and extract it.
 
