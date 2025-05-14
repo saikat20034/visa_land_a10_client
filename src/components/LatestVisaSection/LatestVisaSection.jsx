@@ -28,7 +28,7 @@ const LatestVisaSection = () => {
       <p className="text-2xl font-bold text-center text-blue-900 mb-6">
         <Slide triggerOnce>Latest Visas</Slide>
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {visas.map(visa => (
           <VisaCard visa={visa} key={visa._id} />
         ))}

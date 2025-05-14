@@ -54,8 +54,9 @@ const AllVisas = () => {
           <option value="Student Visa">Student visa</option>
           <option value="Work Visa">Work visa</option>
           <option value="Residential Visa">Residential visa</option>
+          <option value="Medical Visa">Medical Visa</option>
+
           <option value="Tourist Visa">Tourist visa</option>
-         
         </select>
       </div>
 
