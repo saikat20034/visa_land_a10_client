@@ -1,27 +1,35 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // Import AOS styles
+import 'aos/dist/aos.css';
+import { useNavigate } from 'react-router-dom';
 
 const WhyChooseVisaLand = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
-    // Initialize AOS after the component mounts
     AOS.init({
-      duration: 1000, // Set animation duration (optional)
-      easing: 'ease-in-out', // Set easing (optional)
-      once: true, // Whether the animation should happen once (optional)
+      duration: 1000,
+      easing: 'ease-in-out',
+      once: true,
     });
   }, []);
+
+  const handleCardClick = path => {
+    navigate(path);
+  };
 
   return (
     <div className="py-12 rounded-lg my-10 px-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-600">
       <h3 className="text-3xl font-extrabold text-center text-white mb-8">
         Why Choose Visa Land?
       </h3>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Fast Processing */}
         <div
-          className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
-          data-aos="fade-up" // Add AOS animation here
+          onClick={() => handleCardClick('/fast-processing')}
+          className="cursor-pointer flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:ring-4 hover:ring-blue-300"
+          data-aos="fade-up"
         >
           <img
             src="https://img.freepik.com/premium-vector/fast-processing-flat-vector-icon_9206-414.jpg"
@@ -36,8 +44,9 @@ const WhyChooseVisaLand = () => {
 
         {/* Secure Payment */}
         <div
-          className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
-          data-aos="fade-up" // Add AOS animation here
+          onClick={() => handleCardClick('/secure-payment')}
+          className="cursor-pointer flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:ring-4 hover:ring-purple-300"
+          data-aos="fade-up"
         >
           <img
             src="https://www.keyivr.com/wp-content/uploads/2024/02/Payment-IVR-Pass-Off-Mobile-Step-5.png"
@@ -52,8 +61,9 @@ const WhyChooseVisaLand = () => {
 
         {/* Expert Support */}
         <div
-          className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
-          data-aos="fade-up" // Add AOS animation here
+          onClick={() => handleCardClick('/expert-support')}
+          className="cursor-pointer flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl hover:ring-4 hover:ring-pink-300"
+          data-aos="fade-up"
         >
           <img
             src="https://fouladbast.com/wp-content/uploads/2023/11/diagram_customer_support.png"

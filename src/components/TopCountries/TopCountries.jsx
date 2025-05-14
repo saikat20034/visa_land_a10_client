@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useNavigate } from 'react-router-dom';
 
 const TopCountries = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
@@ -14,12 +17,14 @@ const TopCountries = () => {
       img: 'https://cdn.britannica.com/79/4479-050-6EF87027/flag-Stars-and-Stripes-May-1-1795.jpg',
       description:
         'Explore vibrant cities, scenic landscapes, and rich culture.',
+      route: '/usa',
     },
     {
       name: 'United Kingdom',
       visaType: 'Student Visa',
       img: 'https://upload.wikimedia.org/wikipedia/commons/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg',
       description: 'Study in one of the world’s leading educational hubs.',
+      route: '/uk',
     },
     {
       name: 'Australia',
@@ -27,6 +32,7 @@ const TopCountries = () => {
       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Flag_of_Australia_%28converted%29.svg/800px-Flag_of_Australia_%28converted%29.svg.png',
       description:
         'Opportunities for skilled professionals in a thriving economy.',
+      route: '/australia',
     },
     {
       name: 'Canada',
@@ -34,8 +40,13 @@ const TopCountries = () => {
       img: 'https://cdn.vectorstock.com/i/500p/57/98/flag-canada-vector-33145798.jpg',
       description:
         'Experience a welcoming culture and outstanding quality of life.',
+      route: '/canada',
     },
   ];
+
+  const handleNavigate = path => {
+    navigate(path);
+  };
 
   return (
     <div className="py-16 px-6 rounded-lg my-10 bg-gradient-to-r from-blue-50 to-indigo-100">
@@ -68,12 +79,9 @@ const TopCountries = () => {
               <p className="text-sm text-gray-500 mt-4">
                 {country.description}
               </p>
-              {/* Removed routing functionality from Learn More button */}
               <button
-                className="block mt-6 w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-2 px-4 rounded hover:bg-indigo-700"
-                onClick={() =>
-                  console.log('Learn More clicked, but routing is disabled')
-                }
+                className="block mt-6 w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white text-center py-2 px-4 rounded hover:bg-indigo-700 transition duration-300"
+                onClick={() => handleNavigate(country.route)}
               >
                 Learn More
               </button>
