@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import Swal from 'sweetalert2';
 import { getNames } from 'country-list';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const AddVisa = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [selectedCountry, setSelectedCountry] = useState(null);
 
-  // Fetch country names dynamically
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   const countries = getNames().map(country => ({
     value: country,
     label: country,
@@ -62,9 +67,7 @@ const AddVisa = () => {
 
     fetch(`${import.meta.env.VITE_API_URL}/visas`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newVisa),
     })
       .then(res => res.json())
@@ -81,7 +84,7 @@ const AddVisa = () => {
           setSelectedCountry(null);
         }
       })
-      .catch(error => {
+      .catch(() => {
         Swal.fire({
           title: 'Error!',
           text: 'Something went wrong. Please try again.',
@@ -92,214 +95,198 @@ const AddVisa = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 my-10 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-lg shadow-lg">
-      <h2 className="text-3xl font-extrabold text-white text-center mb-8">
-        Add a New Visa
-      </h2>
-      <form
-        onSubmit={handleAddVisa}
-        className="space-y-6 bg-white p-6 rounded-lg shadow-lg"
+    <div
+      className="min-h-screen bg-cover bg-center flex items-center justify-center"
+      style={{
+        backgroundImage:
+          "url('https://i.postimg.cc/QxRwLT3J/20852675-6345959.jpg')",
+      }}
+    >
+      <div
+        className="bg-white bg-opacity-95 rounded-lg shadow-2xl w-full max-w-3xl p-8 md:p-10"
+        data-aos="fade-up"
       >
-        {/* Country Name (Dropdown) */}
-        <div className="mb-4">
-          <label
-            htmlFor="country_name"
-            className="block text-lg font-medium text-gray-800"
-          >
-            Country Name
-          </label>
-          <Select
-            options={countries}
-            value={selectedCountry}
-            onChange={setSelectedCountry}
-            placeholder="Select a country"
-            className="w-full"
-          />
-        </div>
-
-        {/* Country Image URL */}
-        <div className="mb-4">
-          <label
-            htmlFor="country_image"
-            className="block text-lg font-medium text-gray-800"
-          >
-            Country Image URL
-          </label>
-          <input
-            type="url"
-            name="country_image"
-            placeholder="Enter image URL"
-            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
-          />
-        </div>
-
-        {/* Visa Type */}
-        <div className="mb-4">
-          <label
-            htmlFor="visa_type"
-            className="block text-lg font-medium text-gray-800"
-          >
-            Visa Type
-          </label>
-          <select
-            name="visa_type"
-            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
-          >
-            <option value="Tourist Visa">Tourist Visa</option>
-            <option value="Student Visa">Student Visa</option>
-            <option value="Official Visa">Official Visa</option>
-            <option value="Residential Visa">Residential Visa</option>
-            <option value="Work Visa">Work Visa</option>
-          </select>
-        </div>
-
-        {/* Processing Time */}
-        <div className="mb-4">
-          <label
-            htmlFor="processing_time"
-            className="block text-lg font-medium text-gray-800"
-          >
-            Processing Time (in days)
-          </label>
-          <input
-            type="number"
-            name="processing_time"
-            placeholder="Enter processing time"
-            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
-          />
-        </div>
-
-        {/* Required Documents */}
-        <div className="mb-4">
-          <label className="block text-lg font-medium text-gray-800">
-            Required Documents
-          </label>
-          <div className="space-y-2">
-            <label className="inline-flex items-center">
-              <input
-                type="checkbox"
-                name="required_documents"
-                value="Valid passport"
-                className="form-checkbox"
-              />
-              <span className="ml-2">Valid Passport</span>
+        <h2 className="text-3xl font-extrabold text-indigo-700 text-center mb-6">
+          Add a New Visa
+        </h2>
+        <form onSubmit={handleAddVisa} className="space-y-5">
+          {/* Country Name */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Country Name
             </label>
-            <label className="inline-flex items-center">
-              <input
-                type="checkbox"
-                name="required_documents"
-                value="Visa application form"
-                className="form-checkbox"
-              />
-              <span className="ml-2">Visa Application Form</span>
-            </label>
-            <label className="inline-flex items-center">
-              <input
-                type="checkbox"
-                name="required_documents"
-                value="Recent passport-sized photograph"
-                className="form-checkbox"
-              />
-              <span className="ml-2">Recent Passport-sized Photograph</span>
-            </label>
+            <Select
+              options={countries}
+              value={selectedCountry}
+              onChange={setSelectedCountry}
+              placeholder="Select a country"
+              className="text-sm"
+            />
           </div>
-        </div>
 
-        {/* Description */}
-        <div className="mb-4">
-          <label
-            htmlFor="description"
-            className="block text-lg font-medium text-gray-800"
+          {/* Country Image URL */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Country Image URL
+            </label>
+            <input
+              type="url"
+              name="country_image"
+              placeholder="Enter image URL"
+              className="w-full px-4 py-2 border rounded-md text-sm focus:ring-indigo-500"
+              required
+            />
+          </div>
+
+          {/* Visa Type */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Visa Type
+            </label>
+            <select
+              name="visa_type"
+              className="w-full px-4 py-2 border rounded-md text-sm focus:ring-indigo-500"
+              required
+            >
+              <option value="">Select Visa Type</option>
+              <option value="Student Visa">Student Visa</option>
+              <option value="Work Visa">Work Visa</option>
+              <option value="Residential Visa">Residential Visa</option>
+              <option value="Medical Visa">Medical Visa</option>
+              <option value="Startup Visa">Startup Visa</option>
+              <option value="Forest Research Visa">Forest Research Visa</option>
+              <option value="Nomadic Culture Visa">Nomadic Culture Visa</option>
+              <option value="Eco-Tourism Visa">Eco-Tourism Visa</option>
+              <option value="Cultural Exchange Visa">
+                Cultural Exchange Visa
+              </option>
+              <option value="Research Visa">Research Visa</option>
+              <option value="Business Visa">Business Visa</option>
+              <option value="Schengen Visa">Schengen Visa</option>
+              <option value="Work Holiday Visa">Work Holiday Visa</option>
+              <option value="Short-Term Business Visa">
+                Short-Term Business Visa
+              </option>
+              <option value="Tourist Visa">Tourist Visa</option>
+            </select>
+          </div>
+
+          {/* Processing Time */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Processing Time (in days)
+            </label>
+            <input
+              type="number"
+              name="processing_time"
+              placeholder="e.g., 15"
+              className="w-full px-4 py-2 border rounded-md text-sm focus:ring-indigo-500"
+              required
+            />
+          </div>
+
+          {/* Required Documents */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Required Documents
+            </label>
+            <div className="flex flex-col gap-2">
+              {[
+                'Valid passport',
+                'Visa application form',
+                'Recent passport-sized photograph',
+              ].map((doc, i) => (
+                <label key={i} className="inline-flex items-center">
+                  <input
+                    type="checkbox"
+                    name="required_documents"
+                    value={doc}
+                    className="form-checkbox text-indigo-600"
+                  />
+                  <span className="ml-2 text-sm">{doc}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Description */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Description
+            </label>
+            <textarea
+              name="description"
+              placeholder="Enter visa description"
+              className="w-full px-4 py-2 border rounded-md text-sm focus:ring-indigo-500"
+              required
+            />
+          </div>
+
+          {/* Age Restriction */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Age Restriction (Minimum Age - 18yr)
+            </label>
+            <input
+              type="number"
+              name="age_restriction"
+              placeholder="e.g., 18"
+              className="w-full px-4 py-2 border rounded-md text-sm focus:ring-indigo-500"
+              required
+            />
+          </div>
+
+          {/* Fee */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Visa Fee ($)
+            </label>
+            <input
+              type="number"
+              name="fee"
+              placeholder="e.g., 50"
+              className="w-full px-4 py-2 border rounded-md text-sm focus:ring-indigo-500"
+              required
+            />
+          </div>
+
+          {/* Validity */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Validity (in months)
+            </label>
+            <input
+              type="number"
+              name="validity"
+              placeholder="e.g., 6"
+              className="w-full px-4 py-2 border rounded-md text-sm focus:ring-indigo-500"
+              required
+            />
+          </div>
+
+          {/* Application Method */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Application Method
+            </label>
+            <input
+              type="text"
+              name="application_method"
+              placeholder="e.g., Online or Embassy"
+              className="w-full px-4 py-2 border rounded-md text-sm focus:ring-indigo-500"
+              required
+            />
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition duration-300"
           >
-            Description
-          </label>
-          <textarea
-            name="description"
-            placeholder="Enter visa description"
-            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
-          />
-        </div>
-
-        {/* Age Restriction */}
-        <div className="mb-4">
-          <label
-            htmlFor="age_restriction"
-            className="block text-lg font-medium text-gray-800"
-          >
-            Age Restriction (Minimum Age - 18yr)
-          </label>
-          <input
-            type="number"
-            name="age_restriction"
-            placeholder="Enter age restriction"
-            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
-          />
-        </div>
-
-        {/* Fee */}
-        <div className="mb-4">
-          <label
-            htmlFor="fee"
-            className="block text-lg font-medium text-gray-800"
-          >
-            Visa Fee($)
-          </label>
-          <input
-            type="number"
-            name="fee"
-            placeholder="Enter visa fee"
-            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
-          />
-        </div>
-
-        {/* Validity */}
-        <div className="mb-4">
-          <label
-            htmlFor="validity"
-            className="block text-lg font-medium text-gray-800"
-          >
-            Validity (in months)
-          </label>
-          <input
-            type="number"
-            name="validity"
-            placeholder="Enter validity period"
-            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
-          />
-        </div>
-
-        {/* Application Method */}
-        <div className="mb-4">
-          <label
-            htmlFor="application_method"
-            className="block text-lg font-medium text-gray-800"
-          >
-            Application Method
-          </label>
-          <input
-            type="text"
-            name="application_method"
-            placeholder="Enter application method"
-            className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            required
-          />
-        </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500"
-        >
-          Add Visa
-        </button>
-      </form>
+            Add Visa
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

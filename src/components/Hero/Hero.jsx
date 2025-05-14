@@ -60,7 +60,7 @@ const Hero = () => {
         <SwiperSlide className="relative">
           <img
             className="h-[250px] rounded-lg sm:h-[350px] md:h-[400px] lg:h-[500px] w-full object-cover object-top"
-            src="https://i0.wp.com/www.washingtonexpressvisas.com/wp-content/uploads/2022/08/get-visa-for-legal-migration.png?fit=3579%2C1747&ssl=1"
+            src="https://i.postimg.cc/mDH15JNw/3d-travel-icon-with-airplane.jpg"
             alt="VisaLand Slide 3"
           />
           <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-center p-4 sm:p-6 bg-opacity-75 bg-white rounded-lg shadow-lg w-[90%] sm:w-[75%] md:w-[60%] lg:w-[50%]">
