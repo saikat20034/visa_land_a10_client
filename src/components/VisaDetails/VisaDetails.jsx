@@ -86,11 +86,11 @@ const VisaDetails = () => {
   }
 
   return (
-    <div className="py-12 max-w-7xl mx-auto bg-gradient-to-r from-blue-50 to-blue-100">
+    <div className="py-12 max-w-7xl mx-auto bg-gradient-to-r from-blue-50 to-indigo-100">
       <h3 className="text-3xl font-bold text-center text-blue-900 mb-8">
         Visa Details
       </h3>
-      <div className="bg-white shadow-xl rounded-lg overflow-hidden md:grid md:grid-cols-2 md:gap-8">
+      <div className="bg-gradient-to-r from-blue-50 to-indigo-100 shadow-xl rounded-lg overflow-hidden md:grid md:grid-cols-2 md:gap-8">
         <img
           src={visa.country_image}
           alt={visa.country_name}

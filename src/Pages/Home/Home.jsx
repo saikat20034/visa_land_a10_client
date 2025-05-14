@@ -1,4 +1,5 @@
 import BlogPage from "../../components/Blog/Blog";
+import FaqSection from "../../components/faqs/faqs";
 import Hero from "../../components/Hero/Hero";
 import LatestVisaSection from "../../components/LatestVisaSection/LatestVisaSection";
 import TopCountries from "../../components/TopCountries/TopCountries";
@@ -13,6 +14,7 @@ const Home = () => {
       <TopCountries />
       <WhyChooseVisaLand />
       <BlogPage></BlogPage>
+      <FaqSection></FaqSection>
       <Contact></Contact>
     </div>
   );
