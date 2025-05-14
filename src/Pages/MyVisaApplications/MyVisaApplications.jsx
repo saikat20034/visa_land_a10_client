@@ -1,28 +1,32 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { FaRegClock, FaRegMoneyBillAlt, FaRegUserCircle } from 'react-icons/fa';
 
 const MyVisaApplications = () => {
   const [visaApplications, setVisaApplications] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(''); // State for search input
-  const [filteredApplications, setFilteredApplications] = useState([]); // State for filtered applications
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredApplications, setFilteredApplications] = useState([]);
   const { user } = useAuth();
 
   useEffect(() => {
+    AOS.init({ duration: 800 });
+
     const fetchVisaApplications = async () => {
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/applied-visa/${user?.email}`
       );
       const data = await response.json();
       setVisaApplications(data);
-      setFilteredApplications(data); // Initially show all applications
+      setFilteredApplications(data);
     };
 
     fetchVisaApplications();
   }, [user?.email]);
 
   useEffect(() => {
-    // Filter visa applications based on the search term
     if (searchTerm === '') {
       setFilteredApplications(visaApplications);
     } else {
@@ -32,9 +36,18 @@ const MyVisaApplications = () => {
       setFilteredApplications(filtered);
     }
   }, [searchTerm, visaApplications]);
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    }).format(date);
+  };
+
 
   const handleCancelApplication = async id => {
-    console.log(id);
     const confirmCancel = await Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -67,52 +80,82 @@ const MyVisaApplications = () => {
   };
 
   const handleSearchChange = e => {
-    setSearchTerm(e.target.value); // Update the search term when the user types
+    setSearchTerm(e.target.value);
   };
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <h2 className="text-2xl font-bold mb-6">My Visa Applications</h2>
+    <div
+      className="relative min-h-screen bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage:
+          "url('https://i.postimg.cc/sf6nKww2/3d-travel-icon-with-airplane-1.jpg')",
+      }}
+    >
+      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="relative z-10 p-6 max-w-6xl mx-auto text-white">
+        <h2 className="text-3xl font-bold mb-6 text-center animate__animated animate__fadeIn">
+          My Visa Applications
+        </h2>
 
-      {/* Search Input */}
-      <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Search by country name"
-          className="p-2 border rounded-lg w-full md:w-1/2"
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
-      </div>
+        {/* Search Input */}
+        <div className="mb-4 text-center">
+          <input
+            type="text"
+            placeholder="Search by country name"
+            className="p-3 border border-gray-300 rounded-lg w-full md:w-1/2 text-black focus:outline-none focus:ring-2 focus:ring-blue-500"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </div>
 
-      {/* Visa Applications List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredApplications?.map(visa => (
-          <div key={visa._id} className="p-4 border rounded-lg shadow-md">
-            <img
-              src={visa.country_image}
-              alt={visa.country_name}
-              className="w-full h-40 object-cover rounded-md mb-4"
-            />
-            <h3 className="text-lg font-semibold">{visa.country_name}</h3>
-            <p>Visa Type: {visa.visa_type}</p>
-            <p>Processing Time: {visa.processing_time}</p>
-            <p>Fee: {visa.fee}</p>
-            <p>Validity: {visa.validity}</p>
-            <p>Application Method: {visa.application_method}</p>
-            <p>Applied Date: {visa.applied_date}</p>
-            <p>Applicant: {visa.host.name}</p>
-            <p>Email: {visa.host.email}</p>
-            <div className="flex justify-between mt-4">
-              <button
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                onClick={() => handleCancelApplication(visa._id)}
-              >
-                Cancel
-              </button>
+        {/* Visa Applications List */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {filteredApplications?.map(visa => (
+            <div
+              key={visa._id}
+              className="bg-white p-6 rounded-3xl shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out"
+              data-aos="fade-up"
+            >
+              <div className="relative mb-4">
+                <img
+                  src={visa.country_image}
+                  alt={visa.country_name}
+                  className="w-full h-40 object-cover rounded-2xl"
+                />
+                <div className="absolute top-2 right-2 p-2 bg-blue-600 text-white text-xs rounded-full">
+                  {visa.visa_type}
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900">
+                {visa.country_name}
+              </h3>
+              <div className="mt-2">
+                <div className="flex items-center text-sm text-gray-600">
+
+                  <FaRegClock className="mr-2" />
+                  <span>{visa.processing_time}</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-600 mt-1">
+                  <FaRegMoneyBillAlt className="mr-2" />
+                  <span>{visa.fee}</span>
+                </div>
+                <div className="flex items-center text-sm text-gray-600 mt-1">
+                  <FaRegUserCircle className="mr-2" />
+                  <span>{visa.host.name}</span>
+                </div>
+              </div>
+              <div className="mt-4 flex justify-between items-center">
+                <button
+                  className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-red-700 transition-all"
+                  onClick={() => handleCancelApplication(visa._id)}
+                >
+                  Cancel
+                </button>
+                <p className="text-xs pl-2 text-gray-500">{visa.applied_date}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

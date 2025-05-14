@@ -52,8 +52,8 @@ const BlogPage = () => {
   };
 
   return (
-    <div className="py-12 px-6 bg-gradient-to-r from-gray-100 to-blue-100 min-h-screen rounded-lg my-10">
-      <h3 className="text-3xl font-extrabold text-center text-gray-800 mb-8">
+    <div className="py-12 px-6 bg-gradient-to-r from-blue-50 to-indigo-100 min-h-screen rounded-lg my-10">
+      <h3 className="text-4xl font-extrabold text-center text-indigo-800 mb-8">
         VisaLand Blog
       </h3>
 

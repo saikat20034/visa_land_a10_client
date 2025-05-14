@@ -103,7 +103,7 @@ const CanadaVisa = () => {
           <li>
             Double-check document checklists on the official IRCC website.
           </li>
-        
+          <li>Translate and notarize non-English documents.</li>
           <li>Provide detailed and honest answers in forms.</li>
           <li>Apply well in advance of your planned travel date.</li>
         </ul>

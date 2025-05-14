@@ -10,11 +10,13 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="min-h-screen my-10 rounded-lg pb-10 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">
+    <div className="min-h-screen my-10 rounded-lg pb-10 bg-gradient-to-r from-blue-50 to-indigo-100 text-white">
       {/* Hero Section */}
       <section className="text-center py-16 px-4" data-aos="fade-down">
-        <h1 className="text-4xl md:text-5xl font-extrabold">Contact Us</h1>
-        <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
+        <h1 className="text-4xl text-indigo-800 md:text-5xl font-extrabold">
+          Contact Us
+        </h1>
+        <p className="mt-4 text-gray-800 text-lg md:text-xl max-w-2xl mx-auto">
           We're here to help! Reach out to us with your questions, feedback, or
           concerns.
         </p>
@@ -120,7 +122,7 @@ const Contact = () => {
           </div>
           <button
             type="submit"
-            className="w-full py-3 px-6 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg hover:shadow-xl transition duration-200"
+            className="w-full py-3 px-6 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-bold rounded-lg shadow-lg hover:shadow-xl hover:bg-blue-700 transition duration-200"
           >
             Submit
           </button>
