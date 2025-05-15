@@ -142,7 +142,7 @@ const MyAddedVisas = () => {
   }
 
   return (
-    <div className="p-6 max-w-6xl my-10 mx-auto">
+    <div className="p-6 max-w-6xl bg-gradient-to-r from-blue-50 to-indigo-100 my-10 rounded-lg mx-auto">
       <h2 className="text-3xl font-bold text-center mb-8">My Added Visas</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

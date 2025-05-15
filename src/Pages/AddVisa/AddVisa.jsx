@@ -33,14 +33,34 @@ const AddVisa = () => {
       .map(input => input.value);
     const description = form.description.value;
     const age_restriction = form.age_restriction.value;
-    const fee = form.fee.value;
-    const validity = form.validity.value;
+    const fee = parseFloat(form.fee.value);
+    const validity = parseInt(form.validity.value);
     const application_method = form.application_method.value;
 
     if (!selectedCountry) {
       Swal.fire({
         title: 'Error!',
         text: 'Please select a country.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+      return;
+    }
+
+    if (validity > 180) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Validity cannot exceed 180 days.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+      return;
+    }
+
+    if (fee > 1000) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Visa fee cannot exceed $1000.',
         icon: 'error',
         confirmButtonText: 'OK',
       });
@@ -245,6 +265,7 @@ const AddVisa = () => {
               type="number"
               name="fee"
               placeholder="e.g., 50"
+              max="1000"
               className="w-full px-4 py-2 border rounded-md text-sm focus:ring-indigo-500"
               required
             />
@@ -253,12 +274,13 @@ const AddVisa = () => {
           {/* Validity */}
           <div>
             <label className="block text-gray-700 font-medium mb-1">
-              Validity (in months)
+              Validity (in days)
             </label>
             <input
               type="number"
               name="validity"
-              placeholder="e.g., 6"
+              placeholder="e.g., 180"
+              max="180"
               className="w-full px-4 py-2 border rounded-md text-sm focus:ring-indigo-500"
               required
             />

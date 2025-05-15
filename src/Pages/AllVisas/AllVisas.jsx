@@ -8,6 +8,8 @@ const AllVisas = () => {
   const [visas, setVisas] = useState([]);
   const [filteredVisas, setFilteredVisas] = useState([]);
   const [selectedType, setSelectedType] = useState('');
+  const [sortByValidity, setSortByValidity] = useState('');
+  const [sortByFee, setSortByFee] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const visasPerPage = 8;
 
@@ -30,17 +32,66 @@ const AllVisas = () => {
     fetchVisas();
   }, []);
 
+  const sortVisas = (visaArray, validitySort, feeSort) => {
+    let sorted = [...visaArray];
+
+    if (validitySort === 'asc') {
+      sorted.sort((a, b) => Number(a.validity) - Number(b.validity));
+    } else if (validitySort === 'desc') {
+      sorted.sort((a, b) => Number(b.validity) - Number(a.validity));
+    }
+
+    if (feeSort === 'asc') {
+      sorted.sort((a, b) => Number(a.fee || 0) - Number(b.fee || 0));
+    } else if (feeSort === 'desc') {
+      sorted.sort((a, b) => Number(b.fee || 0) - Number(a.fee || 0));
+    }
+
+    return sorted;
+  };
+
   const handleFilterChange = e => {
     const type = e.target.value;
     setSelectedType(type);
     setCurrentPage(1);
 
-    if (type === '') {
-      setFilteredVisas(visas);
-    } else {
-      const filtered = visas.filter(visa => visa.visa_type === type);
-      setFilteredVisas(filtered);
-    }
+    const updated =
+      type === '' ? visas : visas.filter(visa => visa.visa_type === type);
+    const sorted = sortVisas(updated, sortByValidity, sortByFee);
+    setFilteredVisas(sorted);
+  };
+
+  const handleValiditySortChange = e => {
+    const sortType = e.target.value;
+    setSortByValidity(sortType);
+
+    const updated =
+      selectedType === ''
+        ? visas
+        : visas.filter(visa => visa.visa_type === selectedType);
+    const sorted = sortVisas(updated, sortType, sortByFee);
+    setFilteredVisas(sorted);
+  };
+
+  const handleFeeSortChange = e => {
+    const sortType = e.target.value;
+    setSortByFee(sortType);
+
+    const updated =
+      selectedType === ''
+        ? visas
+        : visas.filter(visa => visa.visa_type === selectedType);
+    const sorted = sortVisas(updated, sortByValidity, sortType);
+    setFilteredVisas(sorted);
+  };
+
+  // Reset all filters and sorting
+  const handleReset = () => {
+    setSelectedType('');
+    setSortByValidity('');
+    setSortByFee('');
+    setFilteredVisas(visas);
+    setCurrentPage(1);
   };
 
   const indexOfLastVisa = currentPage * visasPerPage;
@@ -56,8 +107,8 @@ const AllVisas = () => {
         All Available Visas
       </h3>
 
-      {/* Filter */}
-      <div className="mb-10 text-center">
+      {/* Filter & Sort */}
+      <div className="mb-10 flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap">
         <select
           value={selectedType}
           onChange={handleFilterChange}
@@ -86,9 +137,36 @@ const AllVisas = () => {
             </option>
           ))}
         </select>
+
+        <select
+          value={sortByValidity}
+          onChange={handleValiditySortChange}
+          className="p-2 border border-blue-500 rounded focus:outline-none"
+        >
+          <option value="">Sort by Validity</option>
+          <option value="asc">Validity: Low to High</option>
+          <option value="desc">Validity: High to Low</option>
+        </select>
+
+        <select
+          value={sortByFee}
+          onChange={handleFeeSortChange}
+          className="p-2 border border-blue-500 rounded focus:outline-none"
+        >
+          <option value="">Sort by Price</option>
+          <option value="asc">Price: Low to High</option>
+          <option value="desc">Price: High to Low</option>
+        </select>
+
+        <button
+          onClick={handleReset}
+          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+        >
+          Reset Filters
+        </button>
       </div>
 
-      {/* Cards */}
+      {/* Visa Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {currentVisas.map(visa => (
           <div key={visa._id} data-aos="fade-up">
