@@ -23,6 +23,9 @@ import UnitedStatesVisa from '../components/UnitedStatesVisa/UnitedStatesVisa';
 import UnitedKingdomVisa from '../components/UnitedKingdomVisa/UnitedKingdomVisa';
 import CanadaVisa from '../components/CanadaVisa/CanadaVisa';
 import AustraliaVisa from '../components/AustraliaVisa/AustraliaVisa';
+import Profile from '../components/Profile/Profile';
+
+
 
 
 export const router = createBrowserRouter([
@@ -47,6 +50,7 @@ export const router = createBrowserRouter([
         path: '/secure-payment',
         element: <SecurePayment></SecurePayment>,
       },
+
       {
         path: '/fast-processing',
         element: <FastProcessing></FastProcessing>,
@@ -67,6 +71,11 @@ export const router = createBrowserRouter([
         path: '/interview-tips',
         element: <InterviewTipsBlog></InterviewTipsBlog>,
       },
+      {
+        path: '/profile',
+        element: <Profile></Profile>,
+      },
+
       {
         path: '/usa',
         element: <UnitedStatesVisa></UnitedStatesVisa>,

@@ -143,7 +143,9 @@ const MyAddedVisas = () => {
 
   return (
     <div className="p-6 max-w-6xl bg-gradient-to-r from-blue-50 to-indigo-100 my-10 rounded-lg mx-auto">
-      <h2 className="text-3xl font-bold text-center mb-8">My Added Visas</h2>
+      <h2 className="text-3xl lg:text-4xl font-bold lg:font-extrabold text-indigo-800 text-center mb-8">
+        My Added Visas
+      </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {currentVisas.map(visa => (
@@ -237,9 +239,29 @@ const MyAddedVisas = () => {
                   defaultValue={selectedVisa.visa_type}
                   className="w-full border p-2 rounded"
                 >
-                  <option value="Tourist Visa">Tourist Visa</option>
                   <option value="Student Visa">Student Visa</option>
-                  <option value="Official Visa">Official Visa</option>
+                  <option value="Work Visa">Work Visa</option>
+                  <option value="Residential Visa">Residential Visa</option>
+                  <option value="Medical Visa">Medical Visa</option>
+                  <option value="Startup Visa">Startup Visa</option>
+                  <option value="Forest Research Visa">
+                    Forest Research Visa
+                  </option>
+                  <option value="Nomadic Culture Visa">
+                    Nomadic Culture Visa
+                  </option>
+                  <option value="Eco-Tourism Visa">Eco-Tourism Visa</option>
+                  <option value="Cultural Exchange Visa">
+                    Cultural Exchange Visa
+                  </option>
+                  <option value="Research Visa">Research Visa</option>
+                  <option value="Business Visa">Business Visa</option>
+                  <option value="Schengen Visa">Schengen Visa</option>
+                  <option value="Work Holiday Visa">Work Holiday Visa</option>
+                  <option value="Short-Term Business Visa">
+                    Short-Term Business Visa
+                  </option>
+                  <option value="Tourist Visa">Tourist Visa</option>
                 </select>
               </div>
               <div className="flex justify-end gap-2 mt-4">
