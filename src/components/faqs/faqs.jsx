@@ -38,7 +38,7 @@ export default function FaqSection() {
       id="faq"
     >
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl sm:text-4xl font-extrabold text-indigo-800 mb-4">
+        <h2 className="text-4xl sm:text-4xl font-extrabold text-indigo-800 mb-8">
           Frequently Asked Questions
         </h2>
         <p className="text-gray-600 text-lg">

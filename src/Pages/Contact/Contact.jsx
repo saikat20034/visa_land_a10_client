@@ -13,17 +13,17 @@ const Contact = () => {
     <div className="min-h-screen my-10 rounded-lg pb-10 bg-gradient-to-r from-blue-50 to-indigo-100 text-white">
       {/* Hero Section */}
       <section className="text-center py-16 px-4" data-aos="fade-down">
-        <h1 className="text-4xl text-indigo-800 md:text-5xl font-extrabold">
+        <h1 className="text-4xl text-indigo-800 mb-8 md:text-5xl font-extrabold">
           Contact Us
         </h1>
-        <p className="mt-4 text-gray-800 text-lg md:text-xl max-w-2xl mx-auto">
+        <p className="mt-2 text-gray-800 text-lg md:text-xl max-w-2xl mx-auto">
           We're here to help! Reach out to us with your questions, feedback, or
           concerns.
         </p>
       </section>
 
       {/* Contact Information */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 py-12 max-w-6xl mx-auto">
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 py-2 max-w-6xl mx-auto">
         <div
           className="bg-white text-black rounded-lg p-8 shadow-lg flex flex-col items-center"
           data-aos="fade-right"
@@ -43,7 +43,7 @@ const Contact = () => {
           <p>support@example.com</p>
         </div>
         <div
-          className="bg-white text-black rounded-lg p-8 shadow-lg flex flex-col items-center"
+          className="bg-white text-black rounded-lg p-8  shadow-lg flex flex-col items-center"
           data-aos="fade-left"
         >
           <FaMapMarkerAlt className="text-4xl text-pink-500 mb-4" />
@@ -61,12 +61,12 @@ const Contact = () => {
         <h2 className="text-2xl md:text-3xl font-extrabold mb-6 text-center text-indigo-700">
           Drop Us a Message
         </h2>
-        <form className="space-y-6">
+        <form className="space-y-6 text-white">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label
                 htmlFor="name"
-                className="block font-medium text-gray-700 mb-1"
+                className="block  font-medium text-gray-700 mb-1"
               >
                 Full Name
               </label>

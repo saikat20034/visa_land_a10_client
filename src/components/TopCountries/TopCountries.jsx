@@ -51,11 +51,21 @@ const TopCountries = () => {
   return (
     <div className="py-16 px-6 rounded-lg my-10 bg-gradient-to-r from-blue-50 to-indigo-100">
       <h3
-        className="text-4xl font-bold text-center text-indigo-800 mb-10"
+        className="text-4xl font-extrabold text-center text-indigo-800 mb-6"
         data-aos="fade-down"
       >
         Top Countries for Visas
       </h3>
+      <p
+        className="max-w-2xl mx-auto text-center text-gray-700 text-base md:text-lg leading-relaxed mb-10"
+        data-aos="fade-up"
+      >
+        Looking to study, work, or travel abroad? Discover top destinations like
+        the USA, UK, Canada, and Australia — each offering exciting
+        opportunities and smooth visa pathways. Start your journey with VisaLand
+        today!
+      </p>
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {countries.map((country, index) => (
           <div

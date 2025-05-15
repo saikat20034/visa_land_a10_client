@@ -123,7 +123,7 @@ const AddVisa = () => {
       }}
     >
       <div
-        className="bg-white bg-opacity-95 rounded-lg shadow-2xl w-full max-w-3xl p-8 md:p-10"
+        className="bg-white bg-opacity-95 m-8 rounded-lg shadow-2xl w-full max-w-3xl p-8 md:p-10"
         data-aos="fade-up"
       >
         <h2 className="text-3xl font-extrabold text-indigo-700 text-center mb-6">

@@ -20,10 +20,17 @@ const WhyChooseVisaLand = () => {
 
   return (
     <div className="py-12 rounded-lg my-10 px-6 bg-gradient-to-r from-blue-50 to-indigo-100">
-      <h3 className="text-4xl font-extrabold text-center text-indigo-800 mb-8">
+      <h3 className="text-4xl font-extrabold text-center text-indigo-800 mb-4">
         Why Choose Visa Land?
       </h3>
-
+      <p
+        className="max-w-2xl mx-auto text-center text-gray-700 text-base md:text-lg leading-relaxed mb-10"
+        data-aos="fade-up"
+      >
+        VisaLand offers fast, secure, and expert-driven services to simplify
+        your visa journey. Whether you're applying for travel, study, or work —
+        we ensure a smooth, stress-free experience from start to finish.
+      </p>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Fast Processing */}
         <div
