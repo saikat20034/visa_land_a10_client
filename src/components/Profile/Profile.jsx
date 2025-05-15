@@ -170,7 +170,7 @@ const Profile = () => {
                     <td className="p-2 border">{visa.visa_type}</td>
                     <td className="p-2 border">{visa.processing_time} days</td>
                     <td className="p-2 border">${visa.fee}</td>
-                    <td className="p-2 border">{visa.validity} mo</td>
+                    <td className="p-2 border">{visa.validity} days</td>
                     <td className="p-2 border">{visa.application_method}</td>
                     <td className="p-2 border space-x-2">
                       <button
@@ -204,7 +204,7 @@ const Profile = () => {
                   <p>Type: {visa.visa_type}</p>
                   <p>Processing: {visa.processing_time} days</p>
                   <p>Fee: ${visa.fee}</p>
-                  <p>Validity: {visa.validity} months</p>
+                  <p>Validity: {visa.validity} days</p>
                   <p>Method: {visa.application_method}</p>
                   <div className="flex justify-end gap-2 mt-2">
                     <button

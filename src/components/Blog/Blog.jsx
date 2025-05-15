@@ -13,7 +13,7 @@ const BlogPage = () => {
       description:
         'Learn how VisaLand makes the visa process hassle-free and efficient.',
       image:
-        'https://a.storyblok.com/f/199708/1600x770/e9bb3eeec4/visa_-_mobility_your_ally_in_simplifying_visa_processes_globally_02.jpg',
+        'https://i.postimg.cc/mk7hKvbf/visa-mobility-your-ally-in-simplifying-visa-processes-globally-02.jpg',
       date: 'December 7, 2024',
       path: '/simplify',
     },
@@ -23,7 +23,7 @@ const BlogPage = () => {
       description:
         'Get prepared for your next visa interview with these essential tips.',
       image:
-        'https://themigrationbureau.com/wp-content/uploads/2024/03/TMB-Blog-Minimum-salary-3-1110x630.png',
+        'https://i.postimg.cc/1t9WgQjM/TMB-Blog-Minimum-salary-3-1110x630.png',
       date: 'November 28, 2024',
       path: '/interview-tips',
     },
@@ -33,7 +33,7 @@ const BlogPage = () => {
       description:
         'An in-depth look at different visa types and their requirements.',
       image:
-        'https://visaprocedures.com/wp-content/uploads/2024/01/jpeg-optimizer_DALL%C2%B7E-2024-01-25-15.23.59-An-educational-poster-titled-Understanding-Visa-Types-with-various-colorful-icons-representing-different-types-of-visas-like-tourist-student-work.png',
+        'https://i.postimg.cc/y63fkvfM/jpeg-optimizer-DALL-E-2024-01-25-15-23-59-An-educational-poster-titled-Understanding-Visa-Types-with.png',
       date: 'November 15, 2024',
       path: '/visa-categories',
     },

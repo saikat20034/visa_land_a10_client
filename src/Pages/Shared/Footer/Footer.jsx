@@ -1,3 +1,5 @@
+import { FaGithub, FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
+
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-6">
@@ -13,6 +15,7 @@ const Footer = () => {
               smoother.
             </p>
           </div>
+
           {/* Links Section */}
           <div>
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
@@ -39,6 +42,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+
           {/* Contact Section */}
           <div>
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
@@ -53,18 +57,30 @@ const Footer = () => {
           <p className="text-gray-400 text-sm">
             &copy; {new Date().getFullYear()} VisaPortal. All rights reserved.
           </p>
-          <div className="flex space-x-4 mt-4 md:mt-0">
-            <a href="#" className="hover:text-blue-300" aria-label="Facebook">
-              <i className="fab fa-facebook-f"></i>
+          <div className="flex space-x-4 mt-4 md:mt-0 text-xl">
+            <a
+              href="https://github.com/saikat20034"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-300"
+            >
+              <FaGithub />
             </a>
-            <a href="#" className="hover:text-blue-300" aria-label="Twitter">
-              <i className="fab fa-twitter"></i>
+            <a
+              href="https://www.facebook.com/mdmazharulislam.saikat.7/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-300"
+            >
+              <FaFacebookF />
             </a>
-            <a href="#" className="hover:text-blue-300" aria-label="Instagram">
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a href="#" className="hover:text-blue-300" aria-label="LinkedIn">
-              <i className="fab fa-linkedin-in"></i>
+            <a
+              href="https://www.linkedin.com/in/md-mazharul-islam-saikat-65bab2299/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-300"
+            >
+              <FaLinkedinIn />
             </a>
           </div>
         </div>

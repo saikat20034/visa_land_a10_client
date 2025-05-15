@@ -126,10 +126,10 @@ function NavBar() {
                 </Link>
               </div>
             ) : (
-              <div className="hidden lg:flex items-center gap-3">
+              <div className="hidden  lg:flex items-center gap-3">
                 <Tooltip content={user.displayName || 'User'}>
                   <Link to="/profile">
-                    <div className="flex items-center gap-2 cursor-pointer">
+                    <div className="flex  items-center gap-2 cursor-pointer">
                       <Avatar
                         size="sm"
                         variant="circular"
@@ -140,7 +140,7 @@ function NavBar() {
                         }
                         className="border-2 border-white hover:z-10"
                       />
-                      <Typography className="text-white font-lato font-semibold hover:underline">
+                      <Typography className=" text-black font-lato font-semibold hover:underline">
                         {user.displayName || 'Profile'}
                       </Typography>
                     </div>
