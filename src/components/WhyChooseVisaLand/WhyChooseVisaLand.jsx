@@ -19,7 +19,7 @@ const WhyChooseVisaLand = () => {
   };
 
   return (
-    <div className="py-12 rounded-lg my-10 px-6 bg-gradient-to-r from-blue-50 to-indigo-100">
+    <div className="py-10 px-6 rounded-lg mt-10 bg-gradient-to-r from-blue-50 to-indigo-100">
       <h3 className="text-4xl font-extrabold text-center text-indigo-800 mb-4">
         Why Choose Visa Land?
       </h3>

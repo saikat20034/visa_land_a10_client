@@ -34,7 +34,7 @@ export default function FaqSection() {
 
   return (
     <section
-      className="bg-gradient-to-r from-blue-50 to-indigo-100 rounded-lg py-16 px-4 sm:px-8 lg:px-20"
+      className="py-10 px-6 rounded-lg mt-10 bg-gradient-to-r from-blue-50 to-indigo-100"
       id="faq"
     >
       <div className="max-w-4xl mx-auto text-center">

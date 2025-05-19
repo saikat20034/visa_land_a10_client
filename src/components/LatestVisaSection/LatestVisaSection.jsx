@@ -11,7 +11,7 @@ const LatestVisaSection = () => {
     const fetchVisas = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/all-visas`
+          `${import.meta.env.VITE_API_URL}/visas?limit=8`
         );
         const data = await response.json();
         setVisas(data);
@@ -38,7 +38,7 @@ const LatestVisaSection = () => {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {visas.map(visa => (
+        {visas.slice(0, 8).map(visa => (
           <VisaCard visa={visa} key={visa._id} />
         ))}
       </div>

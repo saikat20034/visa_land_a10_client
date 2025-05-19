@@ -55,7 +55,7 @@ const Contact = () => {
 
       {/* Contact Form */}
       <section
-        className="bg-white text-black rounded-lg shadow-lg max-w-4xl mx-auto p-8 md:p-12"
+        className="bg-white text-black rounded-lg  shadow-lg max-w-4xl mx-auto p-8 md:p-12"
         data-aos="zoom-in"
       >
         <h2 className="text-2xl md:text-3xl font-extrabold mb-6 text-center text-indigo-700">

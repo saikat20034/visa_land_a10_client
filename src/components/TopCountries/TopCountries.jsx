@@ -49,7 +49,7 @@ const TopCountries = () => {
   };
 
   return (
-    <div className="py-16 px-6 rounded-lg my-10 bg-gradient-to-r from-blue-50 to-indigo-100">
+    <div className="py-10 px-6 rounded-lg mt-10 bg-gradient-to-r from-blue-50 to-indigo-100">
       <h3
         className="text-4xl font-extrabold text-center text-indigo-800 mb-6"
         data-aos="fade-down"
