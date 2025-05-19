@@ -8,14 +8,16 @@ import Contact from "../Contact/Contact";
 
 const Home = () => {
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="w-full max-w-full mx-auto">
       <Hero />
-      <LatestVisaSection />
-      <TopCountries />
-      <WhyChooseVisaLand />
-      <BlogPage></BlogPage>
-      <FaqSection></FaqSection>
-      <Contact></Contact>
+      <div className="max-w-6xl mx-auto">
+        <LatestVisaSection />
+        <TopCountries />
+        <WhyChooseVisaLand />
+        <BlogPage></BlogPage>
+        <FaqSection></FaqSection>
+        <Contact></Contact>
+      </div>
     </div>
   );
 };
