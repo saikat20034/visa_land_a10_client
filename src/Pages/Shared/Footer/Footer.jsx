@@ -1,4 +1,5 @@
 import { FaGithub, FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
@@ -81,6 +82,14 @@ const Footer = () => {
               className="hover:text-blue-300"
             >
               <FaLinkedinIn />
+            </a>
+            <a
+              href="https://x.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-300"
+            >
+              <FaXTwitter />
             </a>
           </div>
         </div>

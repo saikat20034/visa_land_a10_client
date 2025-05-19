@@ -9,6 +9,9 @@ const Profile = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedVisa, setSelectedVisa] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+  const [editedName, setEditedName] = useState(user?.displayName || '');
+  const [editedImage, setEditedImage] = useState(user?.photoURL || '');
   const visasPerPage = 5;
 
   useEffect(() => {
@@ -114,18 +117,24 @@ const Profile = () => {
       >
         <div className="flex items-center gap-4">
           <img
-            src={user?.photoURL || '/default-user.png'}
+            src={editedImage || '/default-user.png'}
             alt="User"
             className="w-20 h-20 rounded-full border-4 border-indigo-500 shadow-md object-cover"
           />
           <div>
             <h1 className="text-3xl font-bold text-indigo-700">
-              {user?.displayName || 'User'}
+              {editedName || 'User'}
             </h1>
             <p className="text-gray-600">{user?.email}</p>
             <p className="text-sm text-indigo-500 mt-1">
               Account since: {user?.metadata?.creationTime?.split(',')[0]}
             </p>
+            <button
+              onClick={() => setIsEditProfileOpen(true)}
+              className="mt-2 px-4 py-1 text-sm rounded bg-indigo-500 text-white hover:bg-indigo-600"
+            >
+              Edit Profile
+            </button>
           </div>
         </div>
       </motion.div>
@@ -191,7 +200,7 @@ const Profile = () => {
               </tbody>
             </table>
 
-            {/* Mobile Card View */}
+            {/* Mobile View */}
             <div className="md:hidden space-y-4">
               {currentVisas.map(visa => (
                 <div
@@ -250,7 +259,7 @@ const Profile = () => {
         </>
       )}
 
-      {/* Modal with Framer Motion */}
+      {/* Visa Update Modal */}
       <AnimatePresence>
         {isModalOpen && selectedVisa && (
           <motion.div
@@ -269,9 +278,133 @@ const Profile = () => {
               <h3 className="text-xl font-bold mb-4 text-indigo-700">
                 Update Visa
               </h3>
-              <form onSubmit={handleFormSubmit}>
-                {/* Form inputs... (unchanged) */}
-                {/* Reuse your existing form inputs here */}
+              <form onSubmit={handleFormSubmit} className="space-y-3">
+                <input
+                  name="country_name"
+                  defaultValue={selectedVisa.country_name}
+                  placeholder="Country Name"
+                  className="w-full border p-2 rounded"
+                />
+                <input
+                  name="country_image"
+                  defaultValue={selectedVisa.country_image}
+                  placeholder="Image URL"
+                  className="w-full border p-2 rounded"
+                />
+                <input
+                  name="visa_type"
+                  defaultValue={selectedVisa.visa_type}
+                  placeholder="Visa Type"
+                  className="w-full border p-2 rounded"
+                />
+                <input
+                  name="processing_time"
+                  defaultValue={selectedVisa.processing_time}
+                  placeholder="Processing Time"
+                  className="w-full border p-2 rounded"
+                />
+                <input
+                  name="fee"
+                  defaultValue={selectedVisa.fee}
+                  placeholder="Fee"
+                  className="w-full border p-2 rounded"
+                />
+                <input
+                  name="validity"
+                  defaultValue={selectedVisa.validity}
+                  placeholder="Validity"
+                  className="w-full border p-2 rounded"
+                />
+                <input
+                  name="application_method"
+                  defaultValue={selectedVisa.application_method}
+                  placeholder="Application Method"
+                  className="w-full border p-2 rounded"
+                />
+                <div className="flex justify-end gap-2 mt-2">
+                  <button
+                    type="submit"
+                    className="px-4 py-2 rounded bg-green-600 text-white"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={handleCloseModal}
+                    type="button"
+                    className="px-4 py-2 rounded bg-gray-300"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Edit Profile Modal */}
+      <AnimatePresence>
+        {isEditProfileOpen && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md"
+              initial={{ y: -30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 30, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h3 className="text-xl font-bold mb-4 text-indigo-700">
+                Edit Profile
+              </h3>
+              <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  setIsEditProfileOpen(false);
+                }}
+                className="space-y-4"
+              >
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    value={editedName}
+                    onChange={e => setEditedName(e.target.value)}
+                    className="w-full p-2 border rounded"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Image URL
+                  </label>
+                  <input
+                    type="text"
+                    value={editedImage}
+                    onChange={e => setEditedImage(e.target.value)}
+                    className="w-full p-2 border rounded"
+                  />
+                </div>
+                <div className="flex justify-end gap-2">
+                  <button
+                    type="submit"
+                    className="px-4 py-2 rounded bg-blue-600 text-white"
+                  >
+                    Save
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsEditProfileOpen(false)}
+                    className="px-4 py-2 rounded bg-gray-300"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </form>
             </motion.div>
           </motion.div>
